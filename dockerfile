@@ -1,6 +1,6 @@
-FROM ubuntu
-WORKDIR /app
-RUN apt-get update -y
-RUN apt-get install httpd -y
+FROM amazonlinux
+RUN yum update -y && yum install -y httpd && yum clean all
+WORKDIR /tmp
 COPY index.html /var/www/html
-CMD ['httpd' , '-D' , 'FOREGROUND']
+EXPOSE 80
+CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
